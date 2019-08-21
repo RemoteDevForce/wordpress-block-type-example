@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+    - db_data:/var/lib/mysql
+    restart: always
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: rootwordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    networks:
+      - back
+
+  wordpress:
+    image: wordpress:5.2-apache
+    depends_on:
+    - db
+    ports:
+    - "80:80"
+    restart: always
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WP_DEBUG: "true"
+    volumes:
+       - ./custom-wp-block-type/:/var/www/html/wp-content/plugins/custom-wp-block-type
+       - ./my-autogen-block/:/var/www/html/wp-content/plugins/my-autogen-block
+    networks:
+      - back
+
+volumes:
+  db_data:
+
+networks:
+  back:
