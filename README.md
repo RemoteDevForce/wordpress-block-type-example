@@ -20,6 +20,12 @@ To shut it all down , just run `docker-compose down` to shut it all down.
 
 To jump into the terminal for the container, run ` docker-compose exec wordpress bash`
 
+## Examples
+
+The manual examples can be found in custom-wp-block-type. You'll find a few dynamic blocks and one static block example.
+
+The other example uses create-guten-block, I ran `npx create-guten-block my-autogen-block` in the root of the project here to generate the autogen example.
+
 ## Debugging
 
 Use normal `wp-config.php` settings and tail logs with `docker-compose logs -f`

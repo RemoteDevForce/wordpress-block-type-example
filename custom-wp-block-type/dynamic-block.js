@@ -40,7 +40,6 @@ wp.blocks.registerBlockType('josh/stock-block', {
   category: 'common',
   attributes: {
     symbol: {type: 'string'},
-    color: {type: 'string'}
   },
   edit: function(props) {
     function updateContent(event) {
